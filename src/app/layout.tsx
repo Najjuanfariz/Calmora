@@ -21,7 +21,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.className}`}>
         <Navbar />
-        {/* Adjust the wrapper to have a max-width of 1920px and center it */}
         <div className="w-full max-w-[1920px] mx-auto">
           <main>{children}</main>
         </div>
