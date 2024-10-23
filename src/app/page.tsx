@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Specialist from "@/components/specialist";
+import Article from "@/components/article";
 
 export default function Home() {
   return (
@@ -35,6 +36,22 @@ export default function Home() {
               therapy <br/> and counseling approaches.
         </p>
         <Specialist />
+          </div>
+        </div>
+        <div className="bg-cyan py-20">
+          <div className="text-center py-10">
+            <h1 className="text-4xl font-extrabold mb-12">
+            Curated & Brewed Over Coffee!
+            </h1>
+            <p className="text-lg mb-8">
+            Immerse yourself in articles and be swept away to a world that is separate from yours.<br/> Thus, unraveling from all the dilemmas, stress & problems you might have.
+            </p>
+            <div className="flex justify-center space-x-4 mb-8">
+              <Article title="Kesehatan Mental dan Pentingnya Self-Care" date="12 Oktober, 2024" link="https://www.alodokter.com/yuk-kenali-penyebab-dan-gejala-depresi-pada-remaja"/>
+              <Article title="Mengatasi Stres di Tempat Kerja" date="12 Oktober, 2024" link="https://www.klikdokter.com/psikologi/kesehatan-mental/9-cara-mengatasi-stres-di-kantor?srsltid=AfmBOorIhMZVOPlu3NliUDaCNnKVJb0SyUxWRYT8wRpSO0f_1KKIrxSq"/>
+              <Article title="Mengenali Gejala Depresi pada Remaja" date="12 Oktober, 2024" link="https://www.alodokter.com/yuk-kenali-penyebab-dan-gejala-depresi-pada-remaja"/>
+            </div>
+            <button className="bg-lightPink text-white font-semibold py-2 px-6 rounded">View All</button>
           </div>
         </div>
       </main>
