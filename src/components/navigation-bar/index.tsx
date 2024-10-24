@@ -26,7 +26,7 @@ useEffect(() => {
 return (
     <nav className="sticky top-0 z-50 flex justify-between items-center p-4 bg-white shadow-md">
     <Link href="/" className="flex items-center">
-        <Image src ="images/logocalmora.svg" width={256} height={60} alt="Calmora Logo" className="h-8 mr-2"/> 
+        <Image src ="images/LogoCalmora.svg" width={256} height={60} alt="Calmora Logo" className="h-8 mr-2"/> 
     </Link>
     <ul className="flex items-center space-x-6 relative">
         <li className="relative">

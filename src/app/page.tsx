@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Specialist from "@/components/specialist";
 import Article from "@/components/article";
+import Quiz from "@/components/quiz";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -29,7 +31,7 @@ export default function Home() {
             Specialities of Calmora therapists
           </h1>
         </div>
-        <p className="text-white text-sm mb-10 text-center">
+        <p className="text-white text-sm mb-5 text-center">
               Calmora platform can help overcome almost all types of mental health issues 
               and be useful for anyone looking <br /> to make a change. <br />Our network of therapists 
               covers a range of specialities to meet your specific needs. Only evidence-based 
@@ -51,7 +53,35 @@ export default function Home() {
               <Article title="Mengatasi Stres di Tempat Kerja" date="12 Oktober, 2024" link="https://www.klikdokter.com/psikologi/kesehatan-mental/9-cara-mengatasi-stres-di-kantor?srsltid=AfmBOorIhMZVOPlu3NliUDaCNnKVJb0SyUxWRYT8wRpSO0f_1KKIrxSq"/>
               <Article title="Mengenali Gejala Depresi pada Remaja" date="12 Oktober, 2024" link="https://www.alodokter.com/yuk-kenali-penyebab-dan-gejala-depresi-pada-remaja"/>
             </div>
+            <Link href="/articles">
             <button className="bg-lightPink text-white font-semibold py-2 px-6 rounded">View All</button>
+            </Link>
+          </div>
+        </div>
+        <div className="bg-darkPink py-20">
+          <div className="mx-auto">
+            <div className="text-center mb-10">
+            <h1 className="text-white text-4xl font-bold mb-6 whitespace-nowrap">
+          Quizzes to Discover Your True Self
+            </h1>
+            </div>
+            <p className="text-white text-sm mb-10 text-center">
+            Our free quiz can help you take a proactive approach to your mental health and wellness!
+            </p>
+           <div className="flex justify-center space-x-4 mb-10">
+              <Quiz title="Are You Ready For A Relationship?" imageUrl="/" link="/quiz/1" />
+              <Quiz title="What's My Love Language?" imageUrl="/" link="/quiz/2"/>
+              <Quiz title="Am I Lonely?" imageUrl="/" link="/quiz/3"/>
+              <Quiz title="Empath Or Narcissist" imageUrl="/" link="/quiz/4"/>
+              <Quiz title="The Art Of Attachment" imageUrl="/" link="/quiz/5"/>
+            </div>
+            <div className="flex justify-center">
+              <Link href="/quiz">
+                <button className="border-2 border-white text-white bg-transparent px-6 py-2 rounded-lg font-bold">
+                  Take More Quizzes
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </main>
