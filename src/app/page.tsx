@@ -84,6 +84,16 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <div className="bg-cyan py-20">
+          <div className="text-center py-10">
+          <h1 className="text-4xl font-extrabold mb-12 py-20 text-lightPink">
+          Let&apos;s take the first step to find your inner peace, together
+            </h1>
+            <Link href="/get-started">
+            <button className=" bg-lightPink text-white font-semibold py-4 px-10 rounded">Get Started</button>
+            </Link>
+          </div>
+        </div>
       </main>
     </div>
   );
