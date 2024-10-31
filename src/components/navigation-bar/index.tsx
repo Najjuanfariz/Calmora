@@ -1,8 +1,9 @@
 "use client";
 import React, {useState, useRef, useEffect} from "react";
 import Link from "next/link";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import Logo  from "@/assets/images/LogoCalmora.svg";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 const Navbar: React.FC = () => {
     const [servicesOpen, setServicesOpen] = useState(false);
@@ -11,10 +12,9 @@ const Navbar: React.FC = () => {
     const toggleServices = () => {
       setServicesOpen((prev) => !prev);
     };
-  
     const handleClickOutside = (event: MouseEvent) => {
       if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
-        setServicesOpen(false);
+      setServicesOpen(false);
     }
 };
 useEffect(() => {
@@ -25,8 +25,8 @@ useEffect(() => {
   }, []);
 return (
     <nav className="sticky top-0 z-50 flex justify-between items-center p-4 bg-white shadow-md">
-    <Link href="/" className="flex items-center">
-        <Image src ="images/LogoCalmora.svg" width={256} height={60} alt="Calmora Logo" className="h-8 mr-2"/> 
+    <Link href={"/"} className="flex items-center">
+        <Image src ={Logo} width={256} height={60} alt="Logo" className="h-8 mr-2"/> 
     </Link>
     <ul className="flex items-center space-x-6 relative">
         <li className="relative">
@@ -40,7 +40,7 @@ return (
         {servicesOpen && (
         <ul
         ref={servicesRef}
-        className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg z-10" // Ubah right-20 menjadi right-0, hapus inset-x-[-900px]
+        className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg z-10" 
         style={{ width: "900px", height: "100px", padding: "1px" }}
         >
         <div className="grid grid-cols-3 gap-x-[-20px] p-2">

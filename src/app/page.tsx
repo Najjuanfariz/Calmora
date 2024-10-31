@@ -2,7 +2,6 @@ import Link from "next/link";
 import Specialist from "@/components/specialist";
 import Article from "@/components/article";
 import Quiz from "@/components/quiz";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -18,7 +17,7 @@ export default function Home() {
               Benefit from online therapy sessions and self-therapy tools.
             </p>
             <Link href="/get-started">
-            <button className="bg-lightPink text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-pink-700 transition">
+            <button className="bg-lightPink text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-lightPink/80 transition">
               Get Started
             </button>
             </Link>
@@ -68,12 +67,12 @@ export default function Home() {
             <p className="text-white text-sm mb-10 text-center">
             Our free quiz can help you take a proactive approach to your mental health and wellness!
             </p>
-           <div className="flex justify-center space-x-4 mb-10">
-              <Quiz title="Are You Ready For A Relationship?" imageUrl="/" link="/quiz/1" />
-              <Quiz title="What's My Love Language?" imageUrl="/" link="/quiz/2"/>
-              <Quiz title="Am I Lonely?" imageUrl="/" link="/quiz/3"/>
-              <Quiz title="Empath Or Narcissist" imageUrl="/" link="/quiz/4"/>
-              <Quiz title="The Art Of Attachment" imageUrl="/" link="/quiz/5"/>
+            <div className="flex justify-center space-x-4 mb-10">
+              <Quiz title="Are You Ready For A Relationship?" imageUrl="/" link="/quiz/quiz1" />
+              <Quiz title="What's My Love Language?" imageUrl="/" link=""/>
+              <Quiz title="Am I Lonely?" imageUrl="/" link=""/>
+              <Quiz title="Empath Or Narcissist" imageUrl="/" link=""/>
+              <Quiz title="The Art Of Attachment" imageUrl="/" link=""/>
             </div>
             <div className="flex justify-center">
               <Link href="/quiz">
