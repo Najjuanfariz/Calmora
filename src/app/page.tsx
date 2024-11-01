@@ -7,32 +7,107 @@ import Quiz from "@/components/quiz";
 
 export default function Home() {
   const initialQuizzes = [
-    { title: "Are You Ready For A Relationship?", imageUrl: "/", link: "/quiz/quiz1" },
-    { title: "What's My Love Language?", imageUrl: "/", link: "" },
-    { title: "Am I Lonely?", imageUrl: "/", link: "" },
-    { title: "Empath Or Narcissist", imageUrl: "", link: "" },
-    { title: "The Art Of Attachment", imageUrl: "/", link: "" },
+    { title: "Are You Ready For A Relationship?", 
+      imageUrl: "/", 
+      link: "" 
+    },
+    { title: "What's My Love Language?", 
+      imageUrl: "/", 
+      link: "" 
+    },
+    { title: "Am I Lonely?", 
+      imageUrl: "/", 
+      link: "" 
+    },
+    { title: "Empath Or Narcissist", 
+      imageUrl: "", 
+      link: "" 
+    },
+    { title: "The Art Of Attachment", 
+      imageUrl: "/", 
+      link: "" 
+    },
   ];
 
   const additionalQuizzes = [
-    { title: "What is my mental age?", imageUrl: "/", link: "" },
-    { title: "Do i have anxiety", imageUrl: "/", link: "" },
-    { title: "did you experience childhood trauma", imageUrl: "/", link: "" },
-    { title: "how well do you sleep", imageUrl: "/", link: "" },
-    { title: "what is your emotional type", imageUrl: "/", link: "" },
+    { title: "What is my mental age?", 
+      imageUrl: "/", 
+      link: "" 
+    },
+    { title: "Do i have anxiety", 
+      imageUrl: "/", 
+      link: "" 
+    },
+    { title: "did you experience childhood trauma", 
+      imageUrl: "/", 
+      link: "" 
+    },
+    { title: "how well do you sleep", 
+      imageUrl: "/", 
+      link: "" 
+    },
+    { title: "what is your emotional type", 
+      imageUrl: "/", 
+      link: "" 
+    },
   ];
 
-  const [quizzes, setQuizzes] = useState(initialQuizzes);
+  const [quizzes] = useState(initialQuizzes);
   const [showAdditionalQuizzes, setShowAdditionalQuizzes] = useState(false);
 
   // Fungsi untuk menampilkan/menyembunyikan kuis tambahan
   const toggleAdditionalQuizzes = () => {
     setShowAdditionalQuizzes((prev) => !prev);
   };
+  
+  
+  const initialArticle = [
+    {
+      title:"9 Cara Mengatasi Stres di Kantor",
+      date:"12 Oktober 2024",
+      link:"https://www.klikdokter.com/psikologi/kesehatan-mental/9-cara-mengatasi-stres-di-kantor"
+    },
+    {
+      title:"Gangguan Mental - Gejala, Pengobatan", 
+      date:"12 Oktober, 2024",
+      link:"https://www.alodokter.com/kesehatan-mental"
+    },
+    {
+      title:"Mengenali Gejala Depresi pada Remaja",
+      date:"12 Oktober 2024",
+      link:"https://www.alodokter.com/yuk-kenali-penyebab-dan-gejala-depresi-pada-remaja"
+    },
+  ];
+  const additionalArticle  = [
+    {
+      title:"5 Tanda Gangguan Jiwa yang Harus Diwaspadai",
+      date:"12 Oktober 2024",
+      link:"https://www.alodokter.com/tanda-kamu-mengalami-gangguan-jiwa"
+    },
+    {
+      title:"Mengenali Karakter dan Tipe dari Kepribadian ISFP",
+      date:"12 Oktober 2024",
+      link:"https://www.halodoc.com/artikel/mengenali-karakter-dan-tipe-dari-kepribadian-isfp"
+    },
+    {
+      title:"Catat, Ini Ciri-Ciri Orang Harus ke Psikiater", 
+      date:"12 Oktober, 2024",
+      link:"https://www.halodoc.com/artikel/catat-ini-ciri-ciri-orang-harus-ke-psikiater"
+    },
+  ];
+
+  const [articles] = useState(initialArticle);
+  const [showAdditionalArticles, setShowAdditionalArticles] = useState(false);
+
+  // Fungsi untuk menampilkan/menyembunyikan kuis tambahan
+  const toggleAdditionalArticles = () => {
+    setShowAdditionalArticles((prev) => !prev);
+  };
 
   return (
     <div>
       <main>
+        {/* Section Hero */}
         <div className="bg-cyan h-screen flex items-center justify-start px-10">
           <div className="ml-8 max-w-xl">
             <h1 className="text-4xl font-extrabold text-black mb-10">
@@ -68,6 +143,7 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Section Articles */}
         <div className="bg-cyan py-20">
           <div className="text-center py-10">
             <h1 className="text-4xl font-extrabold mb-12">
@@ -77,15 +153,31 @@ export default function Home() {
               Immerse yourself in articles and be swept away to a world that is separate from yours.<br/>
               Thus, unraveling from all the dilemmas, stress & problems you might have.
             </p>
-            <div className="flex justify-center space-x-4 mb-8">
-              <Article title="Kesehatan Mental dan Pentingnya Self-Care" date="12 Oktober, 2024" link="https://www.alodokter.com/yuk-kenali-penyebab-dan-gejala-depresi-pada-remaja" />
-              <Article title="Mengatasi Stres di Tempat Kerja" date="12 Oktober, 2024" link="https://www.klikdokter.com/psikologi/kesehatan-mental/9-cara-mengatasi-stres-di-kantor" />
-              <Article title="Mengenali Gejala Depresi pada Remaja" date="12 Oktober, 2024" link="https://www.alodokter.com/yuk-kenali-penyebab-dan-gejala-depresi-pada-remaja" />
+            {/* Articles Awal */}
+            <div className="flex justify-center flex-wrap space-x-12 mb-10">
+              {articles.map((article, index) => (
+                <Article key={index} title={article.title} date={article.date} link={article.link} />
+              ))}
             </div>
-            <Link href="/articles">
-              <button className="bg-lightPink text-white font-semibold py-2 px-6 rounded">View All</button>
-            </Link>
-          </div>
+            {/* Articles Tambahan */}
+            {showAdditionalArticles && (
+              <div className="flex justify-center flex-wrap space-x-12 mb-10">
+                {additionalArticle.map((article, index) => (
+                  <Article key={index} title={article.title} date={article.date} link={article.link} />
+                ))}
+              </div>
+            )}
+
+          {/* Tombol Menampilkan/Membunyikan Articles tambahan */}
+          <div className="flex justify-center">
+            <button
+              className="bg-lightPink text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-lightPink/80 transition"
+              onClick={toggleAdditionalArticles}
+              >
+              {showAdditionalArticles ? "Hide More" : "View More"}
+            </button>
+              </div>
+            </div>
         </div>
 
         {/* Section Quizzes */}
