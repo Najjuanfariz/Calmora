@@ -9,11 +9,11 @@ interface ArticleProps {
 
 const Article: React.FC<ArticleProps> = ({ title, date , link }) => {
     return (
-        <div className="bg-lightPink text-white rounded-lg p-8 w-[300px] h-[300px]">
+        <div className="bg-lightPink text-white rounded-lg p-12 w-[370px] h-[300px]">
             <h2 className="text-xl font-semibold mb-12">{title}</h2>
             <p className="mb-6 font-extralight">{date}</p>
             <Link href={link}
-            className="border-2 border-white text-white bg-transparent px-4 py-2 rounded-lg font-bold">
+            className="border-2 border-white bg-transparent px-4 py-2 rounded-lg font-bold">
                 Read Article
             </Link>
         </div>

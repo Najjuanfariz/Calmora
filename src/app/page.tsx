@@ -55,7 +55,6 @@ export default function Home() {
   const [quizzes] = useState(initialQuizzes);
   const [showAdditionalQuizzes, setShowAdditionalQuizzes] = useState(false);
 
-  // Fungsi untuk menampilkan/menyembunyikan kuis tambahan
   const toggleAdditionalQuizzes = () => {
     setShowAdditionalQuizzes((prev) => !prev);
   };
@@ -99,7 +98,6 @@ export default function Home() {
   const [articles] = useState(initialArticle);
   const [showAdditionalArticles, setShowAdditionalArticles] = useState(false);
 
-  // Fungsi untuk menampilkan/menyembunyikan kuis tambahan
   const toggleAdditionalArticles = () => {
     setShowAdditionalArticles((prev) => !prev);
   };
