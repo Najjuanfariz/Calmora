@@ -82,11 +82,11 @@ return (
               </li>
               <li className="pl-1 pr-1">
                 <Link
-                  href="/council2"
+                  href="/chatbot"
                   className="block text-black hover:bg-gray-100 p-1 rounded-md text-left"
                   onClick={() => setServicesOpen(false)}
                 >
-                  Council
+                  Chatbot
                 </Link>
               </li>
             </div>
