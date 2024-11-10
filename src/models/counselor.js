@@ -49,4 +49,5 @@ const counselorSchema = new mongoose.Schema({
   },
 });
 const Counselor = mongoose.model("Counselor", counselorSchema);
+
 module.exports = Counselor;

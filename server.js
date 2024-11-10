@@ -1,15 +1,15 @@
 const express = require("express");
 const db = require("./src/config/db");
-const user = require("./src/routes/user");
+const routes = require('./src/routes')
 
 const app = express();
 
-const PORT = process.env.PORT || 5000;
-
-app.use(express.json());
+const PORT = 5000;
 
 db();
 
-app.use("/api/user", user);
+app.use(express.json());
+
+app.use("/api/v1", routes);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
