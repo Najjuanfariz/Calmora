@@ -19,6 +19,22 @@ const quizSchema = new mongoose.Schema({
       ref: "Question",
     },
   ],
+  scoreDescription: [
+    {
+      rangeMin: {
+        type: Number,
+        required: true,
+      },
+      rangeMax: {
+        type: Number,
+        required: true,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   totalQuestion: {
     type: Number,
     required: true,

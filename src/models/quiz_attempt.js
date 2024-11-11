@@ -13,6 +13,10 @@ const quizAttemptSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  scoreDescription: {
+    type: String,
+    required: true,
+  },
 });
 const QuizAttempt = mongoose.model("QuizAttempt", quizAttemptSchema);
 
