@@ -56,7 +56,7 @@ export default function QuizPage() {
                                 Our free quiz can help you take a proactive approach to your mental health and wellness!
                             </p>
                         </div>
-                        <div className="flex flex-wrap justify-center gap-6">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 justify-items-center">
                             {quizData.map((quiz, index) => (
                                 <Quiz
                                     key={index}

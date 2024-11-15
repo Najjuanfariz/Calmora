@@ -11,8 +11,8 @@ return (
         <div className="flex w-[1250px] h-[630px] bg-cyan overflow-hidden shadow-lg">
             {/* Bagian Kiri */}
             <div className="w-2/5 bg-aliPink flex flex-col items-center justify-center">
-                <Image src={Calmora} alt="Calmora" width={120} height={300} className='mb-20'></Image>
-                <Image src={TCalmora} alt='TextCalmora' width={200} height={300}></Image>
+                <Image src={Calmora} alt="Calmora" width={120} height={300} className='mb-20'/>
+                <Image src={TCalmora} alt='TextCalmora' width={200} height={300}/>
             </div>
             {/* Bagian Kanan */}
             <div className="relative w-1/2 flex flex-col items-center justify-center px-10">
