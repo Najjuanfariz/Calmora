@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Specialist from "@/components/specialist";
-import Article from "@/components/article";
 import Quiz from "@/components/quiz";
+import Article from "@/components/article";
 
 export default function Home() {
   const initialQuizzes = [
@@ -63,7 +63,7 @@ export default function Home() {
   const initialArticle = [
     {
       title:"9 Cara Mengatasi Stres di Kantor",
-      date:"12 Oktober 2024",
+      date:"12 Oktober, 2024",
       link:"https://www.klikdokter.com/psikologi/kesehatan-mental/9-cara-mengatasi-stres-di-kantor"
     },
     {
@@ -73,19 +73,19 @@ export default function Home() {
     },
     {
       title:"Mengenali Gejala Depresi pada Remaja",
-      date:"12 Oktober 2024",
+      date:"12 Oktober, 2024",
       link:"https://www.alodokter.com/yuk-kenali-penyebab-dan-gejala-depresi-pada-remaja"
     },
   ];
   const additionalArticle  = [
     {
       title:"5 Tanda Gangguan Jiwa yang Harus Diwaspadai",
-      date:"12 Oktober 2024",
+      date:"12 Oktober, 2024",
       link:"https://www.alodokter.com/tanda-kamu-mengalami-gangguan-jiwa"
     },
     {
       title:"Mengenali Karakter dan Tipe dari Kepribadian ISFP",
-      date:"12 Oktober 2024",
+      date:"12 Oktober, 2024",
       link:"https://www.halodoc.com/artikel/mengenali-karakter-dan-tipe-dari-kepribadian-isfp"
     },
     {
@@ -182,7 +182,7 @@ export default function Home() {
         <div className="bg-darkPink py-20">
           <div className="mx-auto">
             <div className="text-center mb-10">
-              <h1 className="text-white text-4xl font-bold mb-6 whitespace-nowrap">
+              <h1 className="text-white text-4xl font-bold mb-10 whitespace-nowrap">
                 Quizzes to Discover Your True Self
               </h1>
             </div>

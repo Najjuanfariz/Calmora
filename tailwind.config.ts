@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         cyan : "#FEF0F7",
+        aliPink : "#FEE8F3",
         lightPink : "#D05D97",
         darkPink : "#B0548A",
       },

@@ -2,12 +2,14 @@
 import React, {useState, useRef, useEffect} from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Logo  from "@/assets/images/LogoCalmora.svg";
+import Logo  from "@/assets/icons/LogoCalmora.svg";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { usePathname } from "next/navigation";
 
 const Navbar: React.FC = () => {
     const [servicesOpen, setServicesOpen] = useState(false);
     const servicesRef = useRef<HTMLUListElement>(null);
+    const pathname = usePathname();
   
     const toggleServices = () => {
       setServicesOpen((prev) => !prev);
@@ -23,6 +25,11 @@ useEffect(() => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+if (pathname === "/login" || pathname === "/register") {
+  return null;
+}
+
 return (
     <nav className="sticky top-0 z-50 flex justify-between items-center p-4 bg-white shadow-md">
     <Link href={"/"} className="flex items-center">
@@ -92,12 +99,6 @@ return (
             </div>
           </ul>
           )}
-        </li>
-
-        <li>
-          <Link href="/about" className="text-black hover:text-lightPink transition">
-            About
-          </Link>
         </li>
         <li>
           <Link href="/login" className="text-black hover:text-lightPink transition">
