@@ -71,15 +71,6 @@ return (
               </li>
               <li className="pl-1 pr-1">
                 <Link
-                  href="/mood-tracker"
-                  className="block text-black hover:bg-gray-100 p-1 rounded-md text-left"
-                  onClick={() => setServicesOpen(false)}
-                >
-                  Mood Tracker
-                </Link>
-              </li>
-              <li className="pl-1 pr-1">
-                <Link
                   href="/council1"
                   className="block text-black hover:bg-gray-100 p-1 rounded-md text-left"
                   onClick={() => setServicesOpen(false)}
