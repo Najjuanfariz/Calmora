@@ -17,7 +17,7 @@ const Profile: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
           {/* Profile Section */}
-          <div className="col-span-1 flex flex-col items-center bg-white border border-gray-300 rounded-lg p-6 shadow-lg">
+          <div className="col-span-1 flex flex-col items-center bg-white border-2 border-[#525252] rounded-lg p-6 shadow-lg">
             <Image
               src={Fotoprofile}
               alt="Foto profil Abdul Hamid"
@@ -29,43 +29,43 @@ const Profile: React.FC = () => {
           </div>
 
           {/* General Information */}
-          <div className="col-span-2 bg-white border border-gray-300 rounded-lg p-6 shadow-lg">
+          <div className="col-span-2 bg-white border-2 border-[#525252] rounded-xl p-6 shadow-lg">
             <h2 className="text-lg font-semibold mb-4">General Information</h2>
-            <div className="border border-gray-400 rounded-lg p-4">
+            <div className="border-2 border-[#525252] rounded-lg p-4">
               <label className="block text-xs font-medium mb-1">Nama</label>
               <input
                 type="text"
                 value="Abdul Hamid"
                 readOnly
-                className="w-full bg-gray-50 border-none p-2 focus:outline-none"
+                className="w-full border-none p-2 font-semibold focus:outline-none"
               />
             </div>
           </div>
 
           {/* Security Section */}
-          <div className="col-span-3 bg-white border border-gray-300 rounded-lg p-6 shadow-lg">
+          <div className="col-span-3 bg-white border-2 border-[#525252] rounded-xl p-6 shadow-lg">
             <h2 className="text-lg font-semibold mb-4">Security</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Email */}
-              <div className="border border-gray-400 rounded-lg p-4">
+              <div className="border-2 border-[#525252] rounded-lg p-4">
                 <label className="block text-xs font-medium mb-1">Email</label>
                 <input
                   type="email"
                   value="HamidCalmoraRPL@gmail.com"
                   readOnly
-                  className="w-full bg-gray-50 border-none p-2 focus:outline-none"
+                  className="w-full font-semibold border-none p-2 focus:outline-none"
                 />
               </div>
 
               {/* Password */}
-              <div className="border border-gray-400 rounded-lg p-4">
+              <div className="border-2 border-[#525252] rounded-lg p-4">
                 <label className="block text-xs font-medium mb-1">Password</label>
                 <div className="relative">
                   <input
                     type={isPasswordVisible ? "text" : "password"}
-                    value="hahay"
+                    value="Calmora"
                     readOnly
-                    className="w-full bg-gray-50 border-none p-2 focus:outline-none"
+                    className="w-full font-semibold border-none p-2 focus:outline-none"
                   />
                   <button
                     type="button"
