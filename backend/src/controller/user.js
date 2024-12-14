@@ -6,7 +6,6 @@ const payment = require("../models/payment");
 const counselor = require("../models/counselor");
 const booking = require("../models/booking");
 const article = require("../models/article");
-const bcrypt = require("bcryptjs");
 
 const register = async (req, res) => {
   const { username, email, password } = req.body;
@@ -20,13 +19,14 @@ const register = async (req, res) => {
     const newUser = new User({
       username,
       email,
-      password,
+      password
     });
 
     await newUser.save();
     res.status(201).json({ msg: "Pendaftaran berhasil", user: newUser });
   } catch (error) {
     res.status(500).json({ msg: "Terjadi kesalahan saat mendaftar", error: error.message });
+    console.log(error)
   }
 };
 
@@ -39,8 +39,10 @@ const login = async (req, res) => {
       return res.status(400).json({ msg: "Pengguna tidak ditemukan" });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
+    const isPasswordMatch = await user.comparePassword(password);
+    if (isPasswordMatch) {
+      res.status(200).json({ msg: "Login berhasil", user });
+    } else {
       return res.status(400).json({ msg: "Password salah" });
     }
 
