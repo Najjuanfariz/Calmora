@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   GoogleGenerativeAI,
   HarmCategory,
@@ -38,7 +38,6 @@ interface Message {
   ai?: string;
 }
 
-
 const isMentalHealthTopic = (input: string): boolean => {
   const mentalHealthKeywords = [
     "cemas",
@@ -66,6 +65,16 @@ export default function Chatbot() {
   const [isTyping, setIsTyping] = useState<boolean>(false);   
   const [aiResponse, setAIResponse] = useState<string>("");    
   const [displayedResponse, setDisplayedResponse] = useState<string>(""); 
+
+  const messagesEndRef = useRef<HTMLDivElement>(null); // Ref untuk elemen akhir daftar pesan
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom(); // Panggil fungsi scroll saat riwayat pesan diperbarui
+  }, [history, displayedResponse]);
 
   const handleSubmit = async () => {
     if (!inputValue.trim()) return;
@@ -192,6 +201,7 @@ export default function Chatbot() {
             ) : null}
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
       <div className="flex justify-center px-4 py-4 bg-[#B25B8E]">
