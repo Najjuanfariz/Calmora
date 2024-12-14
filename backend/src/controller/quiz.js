@@ -21,15 +21,6 @@ const getQuizWithQuestions = async (req, res) => {
   }
 };
 
-const getScoreDescription = (score, scoreDescriptions) => {
-  for (const description of scoreDescriptions) {
-    if (score >= description.rangeMin && score <= description.rangeMax) {
-      return description.description;
-    }
-  }
-  return "Deskripsi tidak tersedia";
-};
-
 const submitQuizAttempt = async (req, res) => {
   try {
     const { userId, quizId, answers } = req.body;
@@ -57,6 +48,15 @@ const submitQuizAttempt = async (req, res) => {
         return res.status(400).json({ message: "Pilihan jawaban tidak valid" });
       }
     }
+
+    const getScoreDescription = (score, scoreDescriptions) => {
+      for (const description of scoreDescriptions) {
+        if (score >= description.rangeMin && score <= description.rangeMax) {
+          return description.description;
+        }
+      }
+      return "Deskripsi tidak tersedia";
+    };
 
     const scoreDescription = getScoreDescription(totalScore, quiz.scoreDescription);
 

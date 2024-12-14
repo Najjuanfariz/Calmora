@@ -26,7 +26,6 @@ const register = async (req, res) => {
     res.status(201).json({ msg: "Pendaftaran berhasil", user: newUser });
   } catch (error) {
     res.status(500).json({ msg: "Terjadi kesalahan saat mendaftar", error: error.message });
-    console.log(error)
   }
 };
 
@@ -40,9 +39,7 @@ const login = async (req, res) => {
     }
 
     const isPasswordMatch = await user.comparePassword(password);
-    if (isPasswordMatch) {
-      res.status(200).json({ msg: "Login berhasil", user });
-    } else {
+    if (!isPasswordMatch) {
       return res.status(400).json({ msg: "Password salah" });
     }
 
