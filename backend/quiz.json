@@ -1,0 +1,91 @@
+{
+    "title": "Adverse Childhood Experiences (ACEs) Quiz",
+    "description": "A quiz to help individuals assess their exposure to adverse childhood experiences and their potential impact on mental health.",
+    "category": "Mental Health",
+    "question": [
+      { "_id": "q1", "text": "Did you ever experience physical violence from a parent or adult caregiver, such as hitting, kicking, or being slapped?", "options": [
+        "Never",
+        "Rarely",
+        "Sometimes",
+        "Often"
+      ]},
+      { "_id": "q2", "text": "Did you experience any behaviors such as being insulted, sworn at, or belittled by a parent or caregiver?", "options": [
+        "Never",
+        "Rarely",
+        "Sometimes",
+        "Often"
+      ]},
+      { "_id": "q3", "text": "Have you ever felt a lack of love or support from a parent or caregiver? Did you ever feel like a burden as a child?", "options": [
+        "Never",
+        "Rarely",
+        "Occasionally",
+        "Frequently"
+      ]},
+      { "_id": "q4", "text": "Were your basic needs met such as having enough food, clean clothes, or a safe place to sleep as a child?", "options": [
+        "Never",
+        "Rarely",
+        "Occasionally",
+        "Frequently"
+      ]},
+      { "_id": "q5", "text": "How often did you feel emotionally neglected by a parent or caregiver, like they didn’t listen to you or have time for you?", "options": [
+        "Never",
+        "Rarely",
+        "Sometimes",
+        "Often"
+      ]},
+      { "_id": "q6", "text": "Did you experience any of the following in your house before you turned 18: Divorce or separation of parents, or any other break-up of your guardians?", "options": [
+        "Never",
+        "Briefly",
+        "For some time",
+        "Most of the time"
+      ]},
+      { "_id": "q7", "text": "How often did you witness violence between your parents, adult siblings, or caregivers?", "options": [
+        "Never",
+        "Once or twice",
+        "A few times",
+        "Many times"
+      ]},
+      { "_id": "q8", "text": "Did a parent or caregiver in your childhood ever struggle with a substance abuse disorder or an addiction to alcohol or drugs?", "options": [
+        "Never",
+        "Briefly",
+        "For some time",
+        "Most of the time"
+      ]},
+      { "_id": "q9", "text": "Was a parent, adult sibling, or caregiver in your childhood diagnosed with a mental health disorder or illness?", "options": [
+        "Never",
+        "Briefly",
+        "For some time",
+        "Most of the time"
+      ]},
+      { "_id": "q10", "text": "Was a parent or caregiver in your childhood ever involved in unlawful activities or went to prison?", "options": [
+        "Never",
+        "Briefly",
+        "For some time",
+        "Most of the time"
+      ]}
+    ],
+    "scoreDescription": [
+      {
+        "rangeMin": 0,
+        "rangeMax": 10,
+        "description": "Minimal Adverse Childhood Experiences (ACEs). Kamu memiliki sedikit atau tidak ada pengalaman buruk di masa kecil yang dapat berdampak negatif pada kehidupan dewasa. Tetap penting untuk memahami pentingnya kesehatan mental agar dapat menghadapi tantangan di masa depan dengan lebih baik."
+      },
+      {
+        "rangeMin": 11,
+        "rangeMax": 20,
+        "description": "Low to Moderate Adverse Childhood Experiences. Kamu mungkin mengalami beberapa tantangan di masa kecil, tetapi pengalaman ini cenderung tidak signifikan atau dapat diatasi. Mendalami kesejahteraan emosionalmu dan mengembangkan cara-cara sehat untuk menangani stres dan konflik adalah langkah baik."
+      },
+      {
+        "rangeMin": 21,
+        "rangeMax": 30,
+        "description": "Moderate Adverse Childhood Experiences. Pengalaman ini bisa saja memengaruhi cara kamu merespons stres, konflik, atau hubungan di masa dewasa. Mengambil langkah untuk meningkatkan kesehatan mental, seperti berbicara dengan profesional atau mengembangkan keterampilan coping, sangat membantu."
+      },
+      {
+        "rangeMin": 31,
+        "rangeMax": 40,
+        "description": "High Adverse Childhood Experiences. Pengalaman-pengalaman ini dapat memengaruhi cara kamu membentuk hubungan, menangani konflik, dan mengelola emosi. Mencari dukungan melalui terapi atau konseling bisa sangat membantu untuk menghadapi dampak negatif dan membangun cara-cara yang lebih sehat untuk masa depan."
+      }
+    ],
+    "totalQuestion": 10
+  }
+  
