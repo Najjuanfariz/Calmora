@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navigation-bar";
-import Footer from "@/components/footer"; // Import Footer component
+import dynamic from "next/dynamic";
+const Navbar = dynamic(() => import('../components/navigation-bar'), { ssr: false })
+const Footer = dynamic(() => import('../components/footer'), { ssr: false })
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,7 +27,7 @@ export default function RootLayout({
         <div className="w-full max-w-[1920px] mx-auto">
           <main>{children}</main>
         </div>
-        <Footer /> {/* Add Footer here */}
+        <Footer />
       </body>
     </html>
   );

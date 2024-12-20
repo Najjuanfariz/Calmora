@@ -173,7 +173,7 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-[#B25B8E] text-white font-sans">
+    <div className="flex flex-col h-auto bg-[#B25B8E] text-white font-sans">
       <div className="text-center w-full mb-6 p-4">
         <h1 className="text-4xl font-bold text-left mb-2">Calm.ai</h1>
       </div>
@@ -204,8 +204,8 @@ export default function Chatbot() {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="flex justify-center px-4 py-4 bg-[#B25B8E]">
-        <div className="flex w-full max-w-md">
+      <div className="flex justify-center px-4 py-44 bg-[#B25B8E]">
+        <div className="flex w-full max-w-md translate-y-32">
           <input
             type="text"
             placeholder="How can I help you today? ❤️"
@@ -224,7 +224,7 @@ export default function Chatbot() {
       </div>
 
       {history.length === 0 && (
-        <div className="flex justify-center gap-4 mt-6 px-4 mb-6">
+        <div className="flex justify-center gap-4 px-4 mb-4">
           <button onClick={() => setInputValue("Saya merasa cemas")} className="bg-white text-black rounded-full px-6 py-3 shadow-md">
             Saya merasa cemas
           </button>

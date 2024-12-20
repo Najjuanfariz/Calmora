@@ -4,43 +4,33 @@ import Quiz from "@/components/quiz";
 export default function QuizPage() {
     const quizData = [
         { title: "Are You Ready For A Relationship?", 
-        imageUrl: "/", 
-        link: "" 
+        link: "/quiz" 
         },
         { title: "What's My Love Language?", 
-        imageUrl: "/", 
-        link: "" 
+        link: "/quiz" 
         },
         { title: "Am I Lonely?", 
-        imageUrl: "/", 
         link: "" 
         },
         { title: "Empath Or Narcissist", 
-        imageUrl: "/", 
         link: "" 
         },
         { title: "The Art Of Attachment", 
-        imageUrl: "/", 
         link: "" 
         },
         { title: "What is my mental age?", 
-        imageUrl: "/", 
         link: "" 
         },
         { title: "Do I Have Anxiety?", 
-        imageUrl: "/", 
         link: "" 
         },
         { title: "Did You Experience Childhood Trauma?", 
-        imageUrl: "/", 
         link: "" 
         },
         { title: "How Well Do You Sleep?", 
-        imageUrl: "/", 
         link: "" 
         },
         { title: "What Is Your Emotional Type?", 
-        imageUrl: "/", 
         link: "" 
         },
     ];
@@ -61,7 +51,6 @@ export default function QuizPage() {
                                 <Quiz
                                     key={index}
                                     title={quiz.title}
-                                    imageUrl={quiz.imageUrl}
                                     link={quiz.link}
                                 />
                             ))}
