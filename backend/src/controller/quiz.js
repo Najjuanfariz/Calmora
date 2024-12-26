@@ -2,6 +2,15 @@ const Quiz = require("../models/quiz");
 const Question = require("../models/question");
 const QuizAttempt = require("../models/quiz_attempt");
 
+const getAllQuizzes = async (req, res) => {
+  try {
+    const quizzes = await Quiz.find();
+    res.status(200).json(quizzes);
+  } catch (error) {
+    res.status(500).json({ message: "Terjadi kesalahan", error: error.message });
+  }
+};
+
 const getQuizWithQuestions = async (req, res) => {
   try {
     const { quizId } = req.params;
@@ -19,15 +28,6 @@ const getQuizWithQuestions = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Terjadi kesalahan", error: error.message });
   }
-};
-
-const getScoreDescription = (score, scoreDescriptions) => {
-  for (const description of scoreDescriptions) {
-    if (score >= description.rangeMin && score <= description.rangeMax) {
-      return description.description;
-    }
-  }
-  return "Deskripsi tidak tersedia";
 };
 
 const submitQuizAttempt = async (req, res) => {
@@ -58,6 +58,15 @@ const submitQuizAttempt = async (req, res) => {
       }
     }
 
+    const getScoreDescription = (score, scoreDescriptions) => {
+      for (const description of scoreDescriptions) {
+        if (score >= description.rangeMin && score <= description.rangeMax) {
+          return description.description;
+        }
+      }
+      return "Deskripsi tidak tersedia";
+    };
+
     const scoreDescription = getScoreDescription(totalScore, quiz.scoreDescription);
 
     const quizAttempt = new QuizAttempt({
@@ -75,6 +84,7 @@ const submitQuizAttempt = async (req, res) => {
 };
 
 module.exports = {
+  getAllQuizzes,
   getQuizWithQuestions,
   submitQuizAttempt,
 };
