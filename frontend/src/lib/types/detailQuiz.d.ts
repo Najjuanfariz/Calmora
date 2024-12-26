@@ -1,15 +1,16 @@
-export type Options = {
-    text: string[];
+export type options = {
+    optionText: string[];
+    score: number;
 };
 
 export type Question = {
     _id: string;
-    text: string;
-    Options: Options[];
+    quizId: string;
+    content: string;
+    options: options[];
 }
 
 export type Score = {
-    _id: string;
     rangeMin: number;
     rangeMax: number;
     description: string;
