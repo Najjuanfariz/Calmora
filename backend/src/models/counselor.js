@@ -10,7 +10,7 @@ const counselorSchema = new mongoose.Schema({
     required: true,
   },
   whatsappNumber: {
-    type: Number,
+    type: String,
     required: true,
   },
   specialization: {
@@ -28,7 +28,6 @@ const counselorSchema = new mongoose.Schema({
   certification: [
     {
       type: String,
-      required: true,
     },
   ],
   biography: {
@@ -40,7 +39,7 @@ const counselorSchema = new mongoose.Schema({
     required: true,
   },
   price: {
-    type: Boolean,
+    type: String    ,
     required: true,
   },
   availability: {

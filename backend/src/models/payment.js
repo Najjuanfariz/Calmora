@@ -5,7 +5,7 @@ const paymentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Booking",
   },
-  paymentMethode: {
+  paymentMethod: {
     type: String,
     required: true,
   },
