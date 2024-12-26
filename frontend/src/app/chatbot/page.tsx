@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   GoogleGenerativeAI,
   HarmCategory,
@@ -38,7 +38,6 @@ interface Message {
   ai?: string;
 }
 
-
 const isMentalHealthTopic = (input: string): boolean => {
   const mentalHealthKeywords = [
     "cemas",
@@ -59,34 +58,44 @@ const isMentalHealthTopic = (input: string): boolean => {
   );
 };
 
+const removeStarsAndSymbols = (text: string): string => {
+  return text.replace(/[*★☆✨]/g, ""); 
+};
+
 export default function Chatbot() {
-  const [inputValue, setInputValue] = useState<string>(""); 
-  const [history, setHistory] = useState<Message[]>([]);    
-  const [isLoading, setIsLoading] = useState<boolean>(false); 
-  const [isTyping, setIsTyping] = useState<boolean>(false);   
-  const [aiResponse, setAIResponse] = useState<string>("");    
-  const [displayedResponse, setDisplayedResponse] = useState<string>(""); 
+  const [inputValue, setInputValue] = useState<string>("");
+  const [history, setHistory] = useState<Message[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(true); 
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [history]);
+
+  const closeModal = () => {
+    setShowModal(false); 
+  };
 
   const handleSubmit = async () => {
     if (!inputValue.trim()) return;
 
     if (!isMentalHealthTopic(inputValue)) {
-      setHistory((prev) => [
-        ...prev,
-        { user: inputValue, ai: "Maaf, Calm.ai hanya dapat membantu pertanyaan seputar kesehatan mental." },
-      ]);
-      setInputValue("");
+      setShowModal(true); 
+      setInputValue(""); 
       return;
     }
 
     const userMessage = inputValue;
     setInputValue("");
     setIsLoading(true);
-    setIsTyping(true);
-    setAIResponse("");
 
-    setHistory((prev) => [...prev, { user: userMessage }]);
-    setDisplayedResponse("");
+    setHistory((prev) => [...prev, { user: userMessage, ai: "Sedang memproses..." }]);
 
     try {
       const chatSession = model.startChat({
@@ -95,50 +104,27 @@ export default function Chatbot() {
         history: [],
       });
       const result = await chatSession.sendMessage(userMessage);
-      const responseText = await result.response.text();
-      setAIResponse(responseText);
+      let responseText = await result.response.text();
+
+      responseText = removeStarsAndSymbols(responseText);
+
+      setHistory((prev) => {
+        const updatedHistory = [...prev];
+        updatedHistory[updatedHistory.length - 1].ai = responseText;
+        return updatedHistory;
+      });
     } catch (error) {
       console.error("Error:", error);
-      setHistory((prev) => [
-        ...prev,
-        { user: userMessage, ai: "Terjadi kesalahan saat menghubungi AI." },
-      ]);
+      setHistory((prev) => {
+        const updatedHistory = [...prev];
+        updatedHistory[updatedHistory.length - 1].ai =
+          "Terjadi kesalahan saat menghubungi AI.";
+        return updatedHistory;
+      });
     } finally {
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (aiResponse && isTyping) {
-      let index = 0;
-      setDisplayedResponse("");
-
-      const intervalId = setInterval(() => {
-        if (index < aiResponse.length) {
-          setDisplayedResponse((prev) => prev + aiResponse[index]);
-          index++;
-        } else {
-          clearInterval(intervalId);
-
-          setHistory((prev) => {
-            const lastMessage = prev[prev.length - 1];
-            if (lastMessage && !lastMessage.ai) {
-              return [
-                ...prev.slice(0, -1),
-                { user: lastMessage.user, ai: aiResponse },
-              ];
-            }
-            return prev;
-          });
-
-          setAIResponse("");
-          setIsTyping(false);
-        }
-      }, 50);
-
-      return () => clearInterval(intervalId);
-    }
-  }, [aiResponse, isTyping]);
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -146,56 +132,34 @@ export default function Chatbot() {
     }
   };
 
-  const handleStopTyping = () => {
-    setIsTyping(false);
-    setDisplayedResponse(aiResponse);
-    setAIResponse("");
-
-    setHistory((prev) => {
-      const lastMessage = prev[prev.length - 1];
-      if (lastMessage && !lastMessage.ai) {
-        return [
-          ...prev.slice(0, -1),
-          { user: lastMessage.user, ai: displayedResponse || aiResponse },
-        ];
-      }
-      return prev;
-    });
-  };
-
   return (
-    <div className="flex flex-col h-screen bg-[#B25B8E] text-white font-sans">
+    <div className="flex flex-col min-h-screen bg-[#B25B8E] text-white font-sans">
       <div className="text-center w-full mb-6 p-4">
         <h1 className="text-4xl font-bold text-left mb-2">Calm.ai</h1>
       </div>
 
-      <div className="flex flex-col w-full flex-grow overflow-y-auto mb-4 px-4">
+      <div className="flex flex-col w-full flex-grow overflow-y-auto px-4">
         {history.map((item, index) => (
-          <div key={index} className="flex flex-col mb-2">
-            <div className="flex justify-end">
-              <div className="bg-blue-500 text-white rounded-lg px-4 py-2 max-w-xs shadow-md">
+          <div key={index} className="flex flex-col mb-6">
+            <div className="flex justify-end mb-2">
+              <div className="bg-blue-500 text-white rounded-lg px-4 py-2 max-w-md text-sm">
                 <strong>User:</strong> {item.user}
               </div>
             </div>
-            {item.ai ? (
+            {item.ai && (
               <div className="flex justify-start">
-                <div className="bg-white text-black rounded-lg px-4 py-2 max-w-xs shadow-md">
+                <div className="bg-white text-black rounded-lg px-10 py-2 max-w-md text-sm">
                   <strong>Calm.ai:</strong> {item.ai}
                 </div>
               </div>
-            ) : isTyping && displayedResponse ? (
-              <div className="flex justify-start">
-                <div className="bg-white text-black rounded-lg px-4 py-2 max-w-xs shadow-md">
-                  <strong>Calm.ai:</strong> {displayedResponse}
-                </div>
-              </div>
-            ) : null}
+            )}
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
-      <div className="flex justify-center px-4 py-4 bg-[#B25B8E]">
-        <div className="flex w-full max-w-md">
+      <div className="flex justify-center px-4 py-4">
+        <div className="flex w-full max-w-lg">
           <input
             type="text"
             placeholder="How can I help you today? ❤️"
@@ -205,25 +169,51 @@ export default function Chatbot() {
             className="bg-white text-black rounded-l-full px-6 py-3 shadow-md w-full"
           />
           <button
-            onClick={isTyping ? handleStopTyping : handleSubmit}
+            onClick={handleSubmit}
             className="bg-gray-200 text-black rounded-r-full px-6 py-3 shadow-md"
           >
-            {isTyping ? "Stop" : "Submit"}
+            Submit
           </button>
         </div>
       </div>
 
       {history.length === 0 && (
-        <div className="flex justify-center gap-4 mt-6 px-4 mb-6">
-          <button onClick={() => setInputValue("Saya merasa cemas")} className="bg-white text-black rounded-full px-6 py-3 shadow-md">
+        <div className="flex justify-center gap-4 px-4 mb-4">
+          <button
+            onClick={() => setInputValue("Saya merasa cemas")}
+            className="bg-white text-black rounded-full px-6 py-3 shadow-md"
+          >
             Saya merasa cemas
           </button>
-          <button onClick={() => setInputValue("Saya butuh bantuan")} className="bg-white text-black rounded-full px-6 py-3 shadow-md">
-            Saya butuh bantuan
+          <button
+            onClick={() => setInputValue("Saya merasa overthinking")}
+            className="bg-white text-black rounded-full px-6 py-3 shadow-md"
+          >
+            Saya merasa overthinking
           </button>
-          <button onClick={() => setInputValue("Saya ingin konsultasi")} className="bg-white text-black rounded-full px-6 py-3 shadow-md">
+          <button
+            onClick={() => setInputValue("Saya ingin konsultasi")}
+            className="bg-white text-black rounded-full px-6 py-3 shadow-md"
+          >
             Saya ingin konsultasi
           </button>
+        </div>
+      )}
+
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-80 text-center">
+            <h2 className="text-lg font-bold mb-4">Pemberitahuan</h2>
+            <p className="text-gray-700 mb-4">
+              Maaf, chatbot ini hanya dapat membantu pertanyaan tentang kesehatan mental.
+            </p>
+            <button
+              onClick={closeModal}
+              className="bg-blue-500 text-white px-4 py-2 rounded-full"
+            >
+              OK
+            </button>
+          </div>
         </div>
       )}
     </div>

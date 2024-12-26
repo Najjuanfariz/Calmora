@@ -14,7 +14,7 @@ const Article: React.FC<ArticleProps> = ({ title, date , link }) => {
             <p className="mb-6 font-extralight">{date}</p>
             <Link href={link}
             className="border-2 border-white bg-transparent px-4 py-2 rounded-lg font-bold">
-                Read Article
+                
             </Link>
         </div>
     );

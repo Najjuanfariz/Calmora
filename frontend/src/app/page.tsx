@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Link from "next/link";
 import Specialist from "@/components/specialist";
 import Quiz from "@/components/quiz";
 import Article from "@/components/article";
@@ -105,7 +104,6 @@ export default function Home() {
   return (
     <div>
       <main>
-        {/* Section Hero */}
         <div className="bg-cyan h-screen flex items-center justify-start px-10">
           <div className="ml-8 max-w-xl">
             <h1 className="text-4xl font-extrabold text-black mb-10">
@@ -115,15 +113,9 @@ export default function Home() {
               Take a step to feeling better with the help of a licensed mental health professional. 
               Benefit from online therapy sessions and self-therapy tools.
             </p>
-            <Link href="/get-started">
-              <button className="bg-lightPink text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-lightPink/80 transition">
-                Get Started
-              </button>
-            </Link>
           </div>
         </div>
 
-        {/* Section Specialties */}
         <div className="bg-darkPink py-20">
           <div className="mx-auto">
             <div className="text-center mb-10">
@@ -141,7 +133,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Section Articles */}
         <div className="bg-cyan py-20">
           <div className="text-center py-10">
             <h1 className="text-4xl font-extrabold mb-12">
@@ -151,13 +142,11 @@ export default function Home() {
               Immerse yourself in articles and be swept away to a world that is separate from yours.<br/>
               Thus, unraveling from all the dilemmas, stress & problems you might have.
             </p>
-            {/* Articles Awal */}
             <div className="flex justify-center flex-wrap space-x-12 mb-10">
               {articles.map((article, index) => (
                 <Article key={index} title={article.title} date={article.date} link={article.link} />
               ))}
             </div>
-            {/* Articles Tambahan */}
             {showAdditionalArticles && (
               <div className="flex justify-center flex-wrap space-x-12 mb-10">
                 {additionalArticle.map((article, index) => (
@@ -166,7 +155,6 @@ export default function Home() {
               </div>
             )}
 
-          {/* Tombol Menampilkan/Membunyikan Articles tambahan */}
           <div className="flex justify-center">
             <button
               className="bg-lightPink text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-lightPink/80 transition"
@@ -178,7 +166,6 @@ export default function Home() {
             </div>
         </div>
 
-        {/* Section Quizzes */}
         <div className="bg-darkPink py-20">
           <div className="mx-auto">
             <div className="text-center mb-10">
@@ -190,23 +177,20 @@ export default function Home() {
               Our free quiz can help you take a proactive approach to your mental health and wellness!
             </p>
 
-            {/* Kuis awal */}
             <div className="flex justify-center flex-wrap space-x-12 mb-10">
               {quizzes.map((quiz, index) => (
-                <Quiz key={index} title={quiz.title} imageUrl={quiz.imageUrl} link={quiz.link} />
+                <Quiz key={index} title={quiz.title} link={quiz.link} />
               ))}
             </div>
 
-            {/* Kuis tambahan */}
             {showAdditionalQuizzes && (
               <div className="flex justify-center flex-wrap space-x-12 mb-10">
                 {additionalQuizzes.map((quiz, index) => (
-                  <Quiz key={index} title={quiz.title} imageUrl={quiz.imageUrl} link={quiz.link} />
+                  <Quiz key={index} title={quiz.title} link={quiz.link} />
                 ))}
               </div>
             )}
 
-            {/* Tombol untuk menampilkan/menyembunyikan kuis tambahan */}
             <div className="flex justify-center mb-10">
               <button 
                 onClick={toggleAdditionalQuizzes} 
@@ -215,18 +199,6 @@ export default function Home() {
                 {showAdditionalQuizzes ? "Hide More Quizzes" : "Take More Quizzes"}
               </button>
             </div>
-          </div>
-        </div>
-
-        {/* Section Footer */}
-        <div className="bg-cyan py-20">
-          <div className="text-center py-10">
-            <h1 className="text-4xl font-extrabold mb-12 py-20 text-lightPink">
-              Let&apos;s take the first step to find your inner peace, together
-            </h1>
-            <Link href="/get-started">
-              <button className="bg-lightPink text-white font-semibold py-4 px-10 rounded">Get Started</button>
-            </Link>
           </div>
         </div>
       </main>
