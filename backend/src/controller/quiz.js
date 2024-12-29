@@ -32,7 +32,7 @@ const getQuizWithQuestions = async (req, res) => {
 
 const submitQuizAttempt = async (req, res) => {
   try {
-    const { userId, quizId, answers } = req.body;
+    const { quizId, answers } = req.body;
 
     const quiz = await Quiz.findById(quizId);
     if (!quiz) {
@@ -70,7 +70,6 @@ const submitQuizAttempt = async (req, res) => {
     const scoreDescription = getScoreDescription(totalScore, quiz.scoreDescription);
 
     const quizAttempt = new QuizAttempt({
-      userId,
       quizId,
       score: totalScore,
       scoreDescription: scoreDescription,

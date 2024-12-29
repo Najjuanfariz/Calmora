@@ -1,42 +1,26 @@
 const mongoose = require("mongoose");
 
 const bookingSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
   counselorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Counselor",
   },
+  name: {
+    type: String,
+    required: true,
+  },
   price: {
-    type: Number,
+    type: String,
     required: true,
   },
   sessionDate: {
     type: Date,
     required: true,
   },
-  duration: {
+  session: {
     type: Number,
     required: true,
-  },
-  status: {
-    type: String,
-    required: true,
-  },
-  paymentStatus: {
-    type: String,
-    required: true,
-  },
-  paymentId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Payment",
-  },
-  whatsappStatus: {
-    type: String,
-    required: true,
-  },
+  }
 });
 const Booking = mongoose.model("Booking", bookingSchema);
 
