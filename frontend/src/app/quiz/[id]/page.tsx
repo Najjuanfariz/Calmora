@@ -10,11 +10,19 @@ interface QuestionProps {
 export const QuizDetail = ({ params }: QuestionProps) => {
     const [data, setData] = useState<any>(null); // Set initial data as null
     const [answers, setAnswers] = useState<{ [key: string]: string }>({}); // We store the question ID as a string in the state
+    const [result, setResult] = useState<any>(null); // To store quiz result
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         const fetchData = async () => {
-            const quizData = await getDetailQuiz(params.id);  // Get quiz data from server
-            setData(quizData); // Set the quiz data
+            try {
+                const quizData = await getDetailQuiz(params.id);  // Get quiz data from server
+                setData(quizData);
+            } catch (error) {
+                console.error("Failed to fetch quiz data", error);
+            } finally {
+                setLoading(false);
+            }
         };
 
         fetchData();
@@ -33,17 +41,41 @@ export const QuizDetail = ({ params }: QuestionProps) => {
             return;
         }
 
-        const userId = 123; // Replace this with the actual userId
-        const response = await submitQuiz(params.id, userId, Object.entries(answers).map(([questionId, selectedOption]) => ({
-            questionId: parseInt(questionId), // Convert to number for backend
+        const response = await submitQuiz(params.id, Object.entries(answers).map(([questionId, selectedOption]) => ({
+            questionId, // Convert to number for backend
             selectedOption,
         })));
 
-        console.log(response);
-        // Optionally show success message, and update UI to reflect the submission result
+        setResult(response);
     };
 
-    if (!data) return <div>Loading...</div>; // Handle loading state
+    if (loading) return <div>Loading...</div>; // Handle loading state
+
+    if (result) {
+        return (
+            <div className="min-h-screen bg-lightPink flex flex-col items-center py-10 px-4">
+                <h1 className="text-2xl md:text-4xl font-bold text-center text-white mt-5 mb-4">
+                    Quiz Result
+                </h1>
+                <p className="text-lg text-center text-white mb-6">
+                    {result.message}
+                </p>
+                <div className="bg-white rounded-lg p-6 shadow-lg max-w-2xl text-gray-800 text-center">
+                    <h2 className="text-2xl font-bold mb-4">Your Score: {result.quizAttempt.score}</h2>
+                    <p>{result.quizAttempt.scoreDescription}</p>
+                </div>
+                <button
+                    onClick={() => {
+                        setResult(null); // Reset to attempt the quiz again
+                        setAnswers({});
+                    }}
+                    className="mt-6 py-3 px-6 text-white font-semibold bg-blue-600 rounded-md hover:bg-blue-700 transition"
+                >
+                    Retake Quiz
+                </button>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-lightPink flex flex-col items-center py-10 px-4">
