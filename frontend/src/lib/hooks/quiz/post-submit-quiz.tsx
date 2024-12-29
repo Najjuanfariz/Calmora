@@ -2,7 +2,7 @@
 
 import { DetailQuiz } from "@/lib/types/detailQuiz";
 
-const submitQuiz = async (quizId: number, userId: number, answers: { questionId: number; selectedOption: string }[]) => {
+const submitQuiz = async (quizId: number, answers: { questionId: string; selectedOption: string }[]) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/v1/submit-quiz`, {
             method: "POST",
@@ -10,7 +10,6 @@ const submitQuiz = async (quizId: number, userId: number, answers: { questionId:
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                userId,
                 quizId,
                 answers,
             }),
