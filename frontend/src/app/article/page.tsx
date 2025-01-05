@@ -4,35 +4,41 @@ import Article from '@/components/article';
 export default function ArticlePage() {
     const articlesData = [
         {
-            title: "9 Cara Mengatasi Stres di Kantor",
-            date: "12 Oktober, 2024",
-            link: "https://www.klikdokter.com/psikologi/kesehatan-mental/9-cara-mengatasi-stres-di-kantor"
-        },
-        {
-            title: "Gangguan Mental - Gejala, Pengobatan",
-            date: "12 Oktober, 2024",
-            link: "https://www.alodokter.com/kesehatan-mental"
-        },
-        {
-            title: "Mengenali Gejala Depresi pada Remaja",
-            date: "12 Oktober, 2024",
-            link: "https://www.alodokter.com/yuk-kenali-penyebab-dan-gejala-depresi-pada-remaja"
-        },
-        {
-            title: "5 Tanda Gangguan Jiwa yang Harus Diwaspadai",
-            date: "12 Oktober, 2024",
-            link: "https://www.alodokter.com/tanda-kamu-mengalami-gangguan-jiwa"
-        },
-        {
-            title: "Mengenali Karakter dan Tipe dari Kepribadian ISFP",
-            date: "12 Oktober, 2024",
-            link: "https://www.halodoc.com/artikel/mengenali-karakter-dan-tipe-dari-kepribadian-isfp"
-        },
-        {
-            title: "Catat, Ini Ciri-Ciri Orang Harus ke Psikiater",
-            date: "12 Oktober, 2024",
-            link: "https://www.halodoc.com/artikel/catat-ini-ciri-ciri-orang-harus-ke-psikiater"
-        }
+            title:"9 Cara Mengatasi Stres di Kantor",
+            writer:"Krisna Octavianus",
+            date:"04 Nov, 2019",
+            link:"https://www.klikdokter.com/psikologi/kesehatan-mental/9-cara-mengatasi-stres-di-kantor"
+          },
+          {
+            title:"Gangguan Mental - Gejala, Pengobatan", 
+            writer:"Dr. Pittara",
+            date:"20 April, 2022",
+            link:"https://www.alodokter.com/kesehatan-mental"
+          },
+          {
+            title:"Mengenali Gejala Depresi pada Remaja",
+            writer:"Dr. Pittara",
+            date:"2 Februari, 2022",
+            link:"https://www.alodokter.com/yuk-kenali-penyebab-dan-gejala-depresi-pada-remaja"
+          },
+          {
+            title:"5 Tanda Gangguan Jiwa yang Harus Diwaspadai",
+            writer:"Dr. Airindya Bella",
+            date:"17 Maret, 2022",
+            link:"https://www.alodokter.com/tanda-kamu-mengalami-gangguan-jiwa"
+          },
+          {
+            title:"Mengenali Karakter dan Tipe dari Kepribadian ISFP",
+            writer:"Dr. Rizal Fadli",
+            date:"30 Oktober, 2024",
+            link:"https://www.halodoc.com/artikel/mengenali-karakter-dan-tipe-dari-kepribadian-isfp"
+          },
+          {
+            title:"Catat, Ini Ciri-Ciri Orang Harus ke Psikiater", 
+            writer:"Dr. Rizal Fadli",
+            date:"01 November, 2024",
+            link:"https://www.halodoc.com/artikel/catat-ini-ciri-ciri-orang-harus-ke-psikiater"
+          },
     ];
 
     return (
@@ -47,7 +53,7 @@ export default function ArticlePage() {
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
                         {articlesData.map((article, index) => (
-                            <Article key={index} title={article.title} date={article.date} link={article.link} />
+                            <Article key={index} title={article.title} writer={article.writer} date={article.date} link={article.link} />
                         ))}
                     </div>
                 </div>
