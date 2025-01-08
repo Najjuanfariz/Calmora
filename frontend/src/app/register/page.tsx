@@ -62,12 +62,11 @@ export default function Register() {
     <div className="flex h-screen w-auto items-center justify-center bg-darkPink">
       {error && <div className="text-red-500">{error}</div>}
       {success && <div className="text-green-500">{success}</div>}
-
       <div className="flex w-[1250px] h-[630px] bg-cyan overflow-hidden shadow-lg">
-        <Link href="/" className="w-2/5 bg-aliPink flex flex-col items-center justify-center">
+        <div className="w-2/5 bg-aliPink flex flex-col items-center justify-center">
           <Image src={Calmora} alt="Calmora" width={0} height={0} sizes="100%" className="mb-20 w-full max-w-[120px] h-fit" />
           <Image src={TCalmora} alt="TextCalmora" width={0} height={0} sizes="100%" className="w-full max-w-[200px] h-fit" />
-        </Link>
+        </div>
         <div className="relative w-1/2 flex flex-col items-center justify-center px-10">
           <div className="absolute top-[40px] right-[-40px] flex items-center space-x-12 mb-4">
             <p className="text-sm font-semibold text-[#444444]">Already have an account?</p>
@@ -112,7 +111,7 @@ export default function Register() {
             </form>
             <button onClick={handleGoogleRegister} className="flex mt-8 items-center space-x-14">
               <span className="text-[#444444]">Create account with</span>
-              <Image src={LogoGoggle} alt="LogoGoogle" width={40} height={40} />
+              <Image src={LogoGoggle} alt="LogoGoogle" width={0} height={0} sizes="100%" className="max-w-[40px] w-fit"/>
             </button>
           </div>
         </div>

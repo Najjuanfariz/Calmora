@@ -35,13 +35,14 @@ export default function Login() {
                 password
             });
 
-            const userData = response.data.user
-            if(userData && userData._id){
-                cookies.set('userId', userData._id, { path: '/', expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) })
+            const userData = response.data.user;
+            if (userData && userData._id) {
+                cookies.set('userId', userData._id, { path: '/', expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) });
                 cookies.set('username', userData.username, { path: '/', expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) });
                 setSuccess(response.data?.msg);
-                router.push("/")
-            }else{
+                console.log("Login berhasil, mengalihkan...");
+                router.push("/"); 
+            } else {
                 throw new Error("Data Pengguna Tidak Valid");
             }
         } catch (err) {
@@ -64,13 +65,13 @@ export default function Login() {
                 callbackUrl:"/"
             })    
             if(result?.ok){
-                console.log("Google login success", result)
+                console.log("Google login success", result);
+                router.push("/");
             }
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-
-    }
+    };
 
     return (
         <div className="flex h-screen w-auto items-center justify-center bg-darkPink">
@@ -80,13 +81,16 @@ export default function Login() {
                 <div className="w-2/5 bg-aliPink flex flex-col items-center justify-center">
                     <Image src={Calmora} 
                         alt="Calmora" 
-                        width={120} 
-                        height={300} 
-                        className='mb-20' />
+                        width={0} 
+                        height={0}
+                        sizes='100%' 
+                        className='mb-20 max-w-[120px] h-fit'/>
                     <Image src={TCalmora} 
                         alt='TextCalmora' 
-                        width={200} 
-                        height={300} />
+                        width={0} 
+                        height={0} 
+                        sizes='100%'
+                        className='max-w-[200px] h-fit'/>
                 </div>
                 <div className="relative w-1/2 flex flex-col items-center justify-center px-10">
                     <div className="absolute top-[40px] right-[-40px] flex items-center space-x-12 mb-4">
@@ -122,11 +126,7 @@ export default function Login() {
                         </form>
                         <button onClick={handleSignLogin} className="flex mt-8 items-center space-x-32">
                             <span className="text-[#444444]">Sign in with</span>
-                            <Image src={LogoGoggle} 
-                                alt="LogoGoogle" 
-                                width={40} 
-                                height={40}
-                            ></Image>
+                            <Image src={LogoGoggle} alt="LogoGoogle" width={0} height={0} sizes="100%" className="max-w-[40px] w-fit"/>
                         </button>
                     </div>
                 </div>

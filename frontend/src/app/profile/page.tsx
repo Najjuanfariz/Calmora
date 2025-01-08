@@ -11,8 +11,8 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white text-black">
-      <main className="flex flex-col items-center py-24 px-6">
+    <div className="flex flex-col min-h-auto bg-white text-black">
+      <main className="flex flex-col items-center py-8 px-6">
         <h1 className="text-4xl md:text-5xl font-bold mb-12 text-center">Account Information</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
@@ -63,7 +63,7 @@ const Profile: React.FC = () => {
                 <div className="relative">
                   <input
                     type={isPasswordVisible ? "text" : "password"}
-                    value="Calmora"
+                    value="Calmora123"
                     readOnly
                     className="w-full font-semibold border-none p-2 focus:outline-none"
                   />

@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
-const Navbar = dynamic(() => import('../components/navigation-bar'), { ssr: false })
-const Footer = dynamic(() => import('../components/footer'), { ssr: false })
+import NavbarWrapper from "@/components/NavbarWrapper";
+
+const Footer = dynamic(() => import("../components/footer"), { ssr: false });
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -12,7 +13,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Calmora",
-  description: "Calmora",
+  description: "Calmora - A mental health platform",
 };
 
 export default function RootLayout({
@@ -22,13 +23,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className}`}>
-        <Navbar />
+      <body className={`${poppins.className} bg-gray-50 text-gray-900`}>
+        {/* NavbarWrapper di Server Component */}
+        <NavbarWrapper />
+
+        {/* Kontainer utama */}
         <div className="w-full max-w-[1920px] mx-auto">
           <main>{children}</main>
         </div>
+
+        {/* Footer */}
         <Footer />
       </body>
     </html>
   );
 }
+
