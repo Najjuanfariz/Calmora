@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import bookingPayment from '@/lib/hooks/booking/booking-payment'; // Import fungsi bookingPayment
+import bookingPayment from '@/lib/hooks/booking/booking-payment'; 
 import getAllCounselor from '@/lib/hooks/counselor/get-all-counselor';
 
 interface DetailCounselor {
@@ -8,7 +8,7 @@ interface DetailCounselor {
   name: string;
   specialization: string;
   biography: string;
-  price: string; // Harga per sesi
+  price: string; 
   whatsappNumber: string;
 }
 
@@ -16,11 +16,10 @@ export default function ProfessionalAdvisoryCouncil() {
   const [counselors, setCounselors] = useState<DetailCounselor[]>([]);
   const [selectedCounselor, setSelectedCounselor] = useState<DetailCounselor | null>(null);
   const [sessionCount, setSessionCount] = useState(1);
-  const [customerName, setCustomerName] = useState(""); // State untuk nama pengorder
-  const [sessionDate, setSessionDate] = useState<string>(""); // State untuk tanggal sesi
+  const [customerName, setCustomerName] = useState(""); 
+  const [sessionDate, setSessionDate] = useState<string>(""); 
   const [showModal, setShowModal] = useState(false);
 
-  // Menggunakan useEffect untuk memuat data konselor
   useEffect(() => {
     const fetchData = async () => {
       const data = await getAllCounselor();
@@ -30,7 +29,6 @@ export default function ProfessionalAdvisoryCouncil() {
     };
     fetchData();
 
-    // Memuat skrip Snap Midtrans
     const loadSnapScript = () => {
       const script = document.createElement('script');
       script.src = "https://app.sandbox.midtrans.com/snap/snap.js";
@@ -45,15 +43,15 @@ export default function ProfessionalAdvisoryCouncil() {
       document.body.appendChild(script);
     };
 
-    loadSnapScript();  // Memuat Snap script pada mount
+    loadSnapScript();
 
-  }, []); // Hanya sekali ketika pertama kali dimuat
+  }, []); 
 
   const openModal = (counselor: DetailCounselor) => {
     setSelectedCounselor(counselor);
-    setSessionCount(1); // Reset jumlah sesi setiap membuka modal
-    setCustomerName(""); // Reset nama setiap membuka modal
-    setSessionDate(""); // Reset tanggal sesi
+    setSessionCount(1); 
+    setCustomerName("");
+    setSessionDate("");
     setShowModal(true);
   };
 
@@ -63,7 +61,7 @@ export default function ProfessionalAdvisoryCouncil() {
       return;
     }
 
-    const totalPrice = parseInt(selectedCounselor.price) * sessionCount; // Kalkulasi total harga
+    const totalPrice = parseInt(selectedCounselor.price) * sessionCount; 
 
     const bookingData = await bookingPayment(
       selectedCounselor._id,
@@ -76,14 +74,12 @@ export default function ProfessionalAdvisoryCouncil() {
     console.log('Response from backend:', bookingData);
 
     if (bookingData && bookingData.transaction) {
-      // Periksa apakah window.snap terdefinisi sebelum menggunakan snap.pay
       if (typeof window !== "undefined" && window.snap) {
         window.snap.pay(bookingData.transaction, {
           onSuccess: () => {
-            // Navigate to WhatsApp only after Snap payment modal has been closed
             if (selectedCounselor?.whatsappNumber) {
               const url = `https://wa.me/${selectedCounselor.whatsappNumber}`;
-              window.location.href = url; // Redirect to WhatsApp
+              window.location.href = url;
             }
           },
           onPending: () => {
@@ -133,7 +129,7 @@ export default function ProfessionalAdvisoryCouncil() {
       {showModal && selectedCounselor && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white rounded-lg p-6 w-96 shadow-lg">
-            <h2 className="text-xl font-bold mb-4">Pesan Sesi</h2>
+            <h2 className="text-xl text-center font-bold mb-4">Pesan Sesi</h2>
             <p className="mb-2">Konselor: {selectedCounselor.name}</p>
             <p className="mb-2">Harga per sesi: Rp.{selectedCounselor.price}</p>
             <div className="mb-4">

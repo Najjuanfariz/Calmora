@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
   
 const pathname = usePathname();
 
-if (pathname === "/login" || pathname === "/register" || pathname === "/chatbot") {
+if (pathname === "/login" || pathname === "/register" || pathname === "/chatbot" || pathname === "/profile") {
   return null;
 }
   return (
@@ -21,7 +21,7 @@ if (pathname === "/login" || pathname === "/register" || pathname === "/chatbot"
         <div className="flex justify-between items-center">
           {/* Left section with logo and description */}
           <div className="flex flex-col items-start">
-            <Image src={Logo} width={190} height={60} alt="Calmora Logo" className="mb-8" />
+            <Image src={Logo} width={0} height={0} alt="Calmora Logo" className="mb-8 w-[190px]" />
             <p className="text-[15px] font-semibold">
               Calmora, ruang tenang untuk kesehatan mental Anda. Dengan <br/>fitur terbaik, kami hadir untuk mendukung Anda menemukan <br/>keseimbangan dan ketenangan.
             </p>
@@ -41,17 +41,17 @@ if (pathname === "/login" || pathname === "/register" || pathname === "/chatbot"
               <div className="flex space-x-4 ">
                 <div className="flex">
                 <Link href="https://instagram.com">
-                  <Image src={instagram} width={40} height={40} alt="Instagram" className="" />
+                  <Image src={instagram} width={0} height={0} alt="Instagram" className="w-[40px]"/>
                 </Link>
                 </div>
                 <div className="flex">
                 <Link href="https://twitter.com">
-                  <Image src={twitter} width={40} height={40} alt="Twitter" className="" />
+                  <Image src={twitter} width={0} height={0} alt="Twitter" className="w-[40px]"/>
                 </Link>
                 </div>
                 <div className="flex">
                 <Link href="https://facebook.com">
-                  <Image src={facebook} width={40} height={40} alt="Facebook" className="" />
+                  <Image src={facebook} width={0} height={0} alt="Facebook" className="w-[40px]"/>
                 </Link>
                 </div>
               </div>
